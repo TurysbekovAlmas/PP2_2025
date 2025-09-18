@@ -1,0 +1,8 @@
+Установка имени и электронной почты
+git config --global user.name "Your Name"
+git config --global user.email "your_email@whatever.com"
+Имя ветки по умолчанию
+git config --global init.defaultBranch main
+Корректная обработка окончаний строк
+git config --global core.autocrlf true
+git config --global core.safecrlf warn
