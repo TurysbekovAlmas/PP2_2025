@@ -15,5 +15,3 @@ arr = (input("Enter the elements of list:"))
 numbers = arr.split()
 result = [x for x in numbers if is_prime(int(x)) ]
 print("Prime numbers are:", result)
-
-

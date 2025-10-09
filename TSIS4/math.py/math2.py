@@ -1,0 +1,5 @@
+h = int(input("Height: "))
+f = int(input("Base, first value: "))
+s = int(input("Base, second value: "))
+area = float(((f+s)/2) * 5)
+print("Expected Output:",area)

@@ -41,7 +41,7 @@ def guess_the_number():
             print(f"Good job, {name}! You guessed my number in {guesses_taken} guesses!")
             break
 
-# Проверяем, является ли текущий модуль основным
+
 if __name__ == "__main__":
-    # Если текущий модуль основной, то вызываем функцию guess_the_number()
+    
     guess_the_number()

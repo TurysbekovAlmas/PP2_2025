@@ -9,4 +9,10 @@ def func(movies):
     return round(sum/len(movies),2)
 
 
+movies = [
+    {"name": "Movie1", "imdb": 7.5},
+    {"name": "Movie2", "imdb": 8.0},
+    {"name": "Movie3", "imdb": 6.5}
+]
+
 print(func(movies))
