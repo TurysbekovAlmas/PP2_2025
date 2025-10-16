@@ -1,3 +1,7 @@
-a = int(input("print num: "))
-for i in range(a,0-1,-1):
-    print(i, end=" ")
+n = int(input("print num: "))
+def countdown_generator(n):
+    for i in range(n, -1, -1):
+        yield i
+
+for num in countdown_generator(n):
+    print(num) 
