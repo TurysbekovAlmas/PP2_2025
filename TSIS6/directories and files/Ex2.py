@@ -15,5 +15,5 @@ def check_path(path):
      
      return "Access verified successfully."
    
-results= check_path("C:/Users/Nurik/Desktop/pp2")
+results= check_path("C:/Users/Almas/Desktop/PP2_2025")
 print(results)
