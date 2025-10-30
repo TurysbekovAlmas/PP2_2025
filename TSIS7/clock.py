@@ -9,7 +9,7 @@ angle2 = 0
 screen=pygame.display.set_mode((w,h),pygame.RESIZABLE)
 
 pygame.display.set_caption("simple clock")
-pygame.display.set_icon(pygame.image.load(r"C:\Users\Nurik\Desktop\pp2\lab7\1sttask\mickeyclock.bmp"))
+pygame.display.set_icon(pygame.image.load(r"C:\Users\Almas\Desktop\PP2_2025\TSIS7\1sttask\mickeyclock.bmp"))
 
 white=(255,255,255)
 screen.fill(white)
