@@ -1,7 +1,7 @@
 import os
 
-file = 'file3.txt'
-location = "C:/Users/Almas/Desktop/PP2_2025/TSIS6/directories and files"
+file = 'file.txt'
+location = "C:\Users\Almas\pp2_2025"
 path = os.path.join(location, file)
 if os.path.exists(path):
     try:
