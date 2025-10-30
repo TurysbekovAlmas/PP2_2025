@@ -14,9 +14,9 @@ pygame.display.set_icon(pygame.image.load(r"C:\Users\Almas\Desktop\PP2_2025\TSIS
 white=(255,255,255)
 screen.fill(white)
 
-mickey=pygame.image.load(r"C:\Users\Nurik\Desktop\pp2\lab7\1sttask\main-clock.png")
-leftHand=pygame.image.load(r"C:\Users\Nurik\Desktop\pp2\lab7\1sttask\left-hand.png")
-rightHand=pygame.image.load(r"C:\Users\Nurik\Desktop\pp2\lab7\1sttask\right-hand.png")
+mickey=pygame.image.load(r"C:\Users\Almas\Desktop\PP2_2025\TSIS7\1sttask\main-clock.png")
+leftHand=pygame.image.load(r"C:\Users\Almas\Desktop\PP2_2025\TSIS7\1sttask\left-hand.png")
+rightHand=pygame.image.load(r"C:\Users\Almas\Desktop\PP2_2025\TSIS7\1sttask\right-hand.png")
 
 mickey = pygame.transform.scale( mickey ,(414 , 418))
 clock = pygame.time.Clock()
