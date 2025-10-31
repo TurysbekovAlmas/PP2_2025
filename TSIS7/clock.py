@@ -9,18 +9,18 @@ angle2 = 0
 screen=pygame.display.set_mode((w,h),pygame.RESIZABLE)
 
 pygame.display.set_caption("simple clock")
-pygame.display.set_icon(pygame.image.load(r"C:\Users\Nurik\Desktop\pp2\lab7\1sttask\mickeyclock.bmp"))
+pygame.display.set_icon(pygame.image.load(r"C:\Users\Almas\pp2_2025\TSIS7\1sttask\mickeyclock.bmp"))
 
 white=(255,255,255)
 screen.fill(white)
 
-mickey=pygame.image.load(r"C:\Users\Nurik\Desktop\pp2\lab7\1sttask\main-clock.png")
-leftHand=pygame.image.load(r"C:\Users\Nurik\Desktop\pp2\lab7\1sttask\left-hand.png")
-rightHand=pygame.image.load(r"C:\Users\Nurik\Desktop\pp2\lab7\1sttask\right-hand.png")
+mickey=pygame.image.load(r"C:\Users\Almas\pp2_2025\TSIS7\1sttask\main-clock.png")
+leftHand=pygame.image.load(r"C:\Users\Almas\pp2_2025\TSIS7\1sttask\left-hand.png")
+rightHand=pygame.image.load(r"C:\Users\Almas\pp2_2025\TSIS7\1sttask\right-hand.png")
 
 mickey = pygame.transform.scale( mickey ,(414 , 418))
 clock = pygame.time.Clock()
-x=0
+
 while True:
     for event in pygame.event.get():    
         if event.type == pygame.QUIT:
@@ -29,7 +29,7 @@ while True:
     angle1 = -t.second * 6
     angle2 = -t.minute * 6
     
-    leftHand1 = pygame.transform.rotate(leftHand,x)
+    leftHand1 = pygame.transform.rotate(leftHand,angle1)
     rightHand1 = pygame.transform.rotate(rightHand,angle2)
     
     rightHand1=pygame.transform.scale(rightHand1,(rightHand1.get_width()//2 ,rightHand1.get_height()//2))
@@ -42,9 +42,7 @@ while True:
     screen.blit(mickey,mickeyrect)
     screen.blit(leftHand1,leftHandRect)
     screen.blit(rightHand1,rightHandRect) 
-    x-=0.6
+
     pygame.display.update()
 
     clock.tick(10)
-
-run()

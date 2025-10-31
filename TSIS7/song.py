@@ -4,9 +4,9 @@ from pygame import mixer
 mixer.init()
 screen=pygame.display.set_mode((800, 600))
 
-player=pygame.image.load(r"C:\Users\Nurik\Desktop\pp2\lab7\2ndtask\musicplayer.jpg")
+player=pygame.image.load(r"C:\Users\Almas\pp2_2025\TSIS7\2ndtask\musicplayer.jpg")
 mic = pygame.transform.scale( player ,(800 , 600))
-music=mixer.music.load(r"C:\Users\Nurik\Desktop\pp2\lab7\2ndtask\music.mp3")
+music=mixer.music.load(r"C:\Users\Almas\pp2_2025\TSIS7\2ndtask\music2.mp3")
 pause= False
 
 while True:
