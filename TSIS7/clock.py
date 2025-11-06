@@ -26,7 +26,7 @@ while True:
         if event.type == pygame.QUIT:
             exit()
     t = datetime.datetime.now()
-    angle1 = -t.second * 6
+    angle1 = -(t.second + t.microsecond / 1_000_000) * 6 - 90
     angle2 = -t.minute * 6
     
     leftHand1 = pygame.transform.rotate(leftHand,angle1)

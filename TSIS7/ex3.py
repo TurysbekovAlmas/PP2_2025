@@ -21,8 +21,12 @@ while True:
         x += 20
     if keys[pygame.K_DOWN] and y + 30 < h:
         y += 20
-    if keys[pygame.K_UP] and y - 30 > 0:
-        y -= 20
+    if keys[pygame.K_UP]:
+        if y >= 0:
+            y -= 20
+        elif y < 0:
+            y = 600
+        
 
     screen.fill((255, 255, 255))
     pygame.draw.circle(screen, (255, 0, 0), (x, y), 25)
