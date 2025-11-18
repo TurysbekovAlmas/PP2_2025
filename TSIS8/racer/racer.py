@@ -64,8 +64,6 @@ class Coin(pygame.sprite.Sprite):
         if (pygame.sprite.spritecollideany(E1, coin)):
             self.rect.top = 0
         
- 
- 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
@@ -138,12 +136,6 @@ while True:
           time.sleep(2)
           pygame.quit()
           sys.exit()
-          
-        
-          
-        
-                    
                
-         
     pygame.display.update()
     FramePerSec.tick(FPS)
