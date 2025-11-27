@@ -1,1 +1,0 @@
-& C:/Users/Almas/AppData/Local/Programs/Python/Python313/python.exe c:/Users/Almas/pp2_2025/song3.py
