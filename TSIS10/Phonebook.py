@@ -6,12 +6,15 @@ class PhoneBook:
     def __init__(self, dbname, user, password, host='localhost', port='5432'):
         """Initialize database connection"""
         try:
+            # Set client encoding to UTF8 explicitly
             self.conn = psycopg2.connect(
                 dbname=dbname,
-                user=user,
-                password=password,
+                user="postgres",
+                password="MyNewPassword123!",
                 host=host,
-                port=port
+                port=port,
+                client_encoding='UTF8',
+                options='-c client_encoding=UTF8'
             )
             self.cursor = self.conn.cursor()
             print("Database connection established successfully")

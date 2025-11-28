@@ -1,6 +1,7 @@
 import os
 import sys
 
+# КРИТИЧЕСКИ ВАЖНО: Установить переменную окружения ДО импорта psycopg2
 os.environ['PGCLIENTENCODING'] = 'UTF8'
 
 import pygame
@@ -9,7 +10,7 @@ import psycopg2
 from datetime import datetime
 import json
 
-
+# Initialize Pygame
 pygame.init()
 
 # Constants
@@ -30,27 +31,27 @@ class SnakeGameDB:
     def __init__(self, dbname, user, password, host='localhost', port='5432'):
         """Initialize database connection"""
         try:
-            os.environ['PGHOST'] = host
-            os.environ['PGPORT'] = str(port)
-            os.environ['PGDATABASE'] = dbname
-            os.environ['PGUSER'] = user
-            os.environ['PGPASSWORD'] = password
-            os.environ['PGCLIENTENCODING'] = 'UTF8'
+            # Подключение с явным указанием кодировки
+            self.conn = psycopg2.connect(
+                host=host,
+                port=port,
+                database=dbname,
+                user=user,
+                password=password,
+                options='-c client_encoding=UTF8'
+            )
             
-            self.conn = psycopg2.connect('')
-            
+            # Дополнительно установить кодировку
             self.conn.set_client_encoding('UTF8')
             self.cursor = self.conn.cursor()
-            self.cursor.execute("SET client_encoding TO 'UTF8';")
-            self.conn.commit()
             
+            # Проверить соединение
+            self.cursor.execute("SELECT version();")
             print("Database connection established")
             
         except Exception as e:
             print(f"Error connecting to database: {e}")
             raise
-
-    # ... остальные методы класса без изменений ...
 
     def create_tables(self):
         """Create user and user_score tables"""
