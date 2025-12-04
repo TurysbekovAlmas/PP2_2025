@@ -12,7 +12,7 @@ import json
 
 pygame.init()
 
-# Constants
+
 WIDTH, HEIGHT = 600, 600
 GRID_SIZE = 20
 GRID_WIDTH = WIDTH // GRID_SIZE

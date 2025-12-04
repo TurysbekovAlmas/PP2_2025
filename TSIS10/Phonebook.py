@@ -4,9 +4,9 @@ from psycopg2 import sql
 
 class PhoneBook:
     def __init__(self, dbname, user, password, host='localhost', port='5432'):
-        """Initialize database connection"""
+        
         try:
-            # Set client encoding to UTF8 explicitly
+            
             self.conn = psycopg2.connect(
                 dbname=dbname,
                 user="postgres",
@@ -23,7 +23,7 @@ class PhoneBook:
             raise
 
     def create_tables(self):
-        """Create PhoneBook tables"""
+        
         create_users_table = """
         CREATE TABLE IF NOT EXISTS users (
             user_id SERIAL PRIMARY KEY,
@@ -54,7 +54,7 @@ class PhoneBook:
             self.conn.rollback()
 
     def insert_user_console(self):
-        """Insert user data from console input"""
+        
         print("\n--- Add New Contact ---")
         first_name = input("Enter first name: ")
         last_name = input("Enter last name: ")
@@ -63,7 +63,7 @@ class PhoneBook:
         phone_type = input("Enter phone type (mobile/home/work) [mobile]: ") or 'mobile'
         
         try:
-            # Insert user
+           
             insert_user_query = """
             INSERT INTO users (first_name, last_name, email)
             VALUES (%s, %s, %s) RETURNING user_id;
@@ -71,7 +71,6 @@ class PhoneBook:
             self.cursor.execute(insert_user_query, (first_name, last_name, email))
             user_id = self.cursor.fetchone()[0]
             
-            # Insert phone
             insert_phone_query = """
             INSERT INTO phones (user_id, phone_number, phone_type, is_primary)
             VALUES (%s, %s, %s, TRUE);
@@ -85,7 +84,6 @@ class PhoneBook:
             self.conn.rollback()
 
     def insert_from_csv(self, csv_file):
-        """Insert data from CSV file"""
         try:
             with open(csv_file, 'r') as file:
                 csv_reader = csv.DictReader(file)
@@ -119,7 +117,7 @@ class PhoneBook:
             self.conn.rollback()
 
     def update_user(self, user_id, first_name=None, phone_number=None):
-        """Update user information"""
+        
         try:
             if first_name:
                 update_query = "UPDATE users SET first_name = %s WHERE user_id = %s;"
@@ -139,7 +137,7 @@ class PhoneBook:
             self.conn.rollback()
 
     def query_all_contacts(self):
-        """Query all contacts"""
+        
         query = """
         SELECT u.user_id, u.first_name, u.last_name, u.email, 
                p.phone_number, p.phone_type
@@ -151,7 +149,7 @@ class PhoneBook:
         return self.cursor.fetchall()
 
     def query_by_name(self, name):
-        """Query contacts by name (first or last)"""
+        
         query = """
         SELECT u.user_id, u.first_name, u.last_name, u.email, 
                p.phone_number, p.phone_type
@@ -163,7 +161,7 @@ class PhoneBook:
         return self.cursor.fetchall()
 
     def query_by_phone(self, phone):
-        """Query contacts by phone number"""
+        
         query = """
         SELECT u.user_id, u.first_name, u.last_name, u.email, 
                p.phone_number, p.phone_type
@@ -175,7 +173,7 @@ class PhoneBook:
         return self.cursor.fetchall()
 
     def delete_by_user_id(self, user_id):
-        """Delete contact by user ID"""
+        
         try:
             delete_query = "DELETE FROM users WHERE user_id = %s;"
             self.cursor.execute(delete_query, (user_id,))
@@ -186,9 +184,9 @@ class PhoneBook:
             self.conn.rollback()
 
     def delete_by_phone(self, phone_number):
-        """Delete contact by phone number"""
+        
         try:
-            # First find the user_id
+            
             find_query = "SELECT user_id FROM phones WHERE phone_number = %s;"
             self.cursor.execute(find_query, (phone_number,))
             result = self.cursor.fetchone()
@@ -206,7 +204,7 @@ class PhoneBook:
             self.conn.rollback()
 
     def display_contacts(self, contacts):
-        """Display contacts in formatted way"""
+        
         if not contacts:
             print("No contacts found")
             return
@@ -224,14 +222,14 @@ class PhoneBook:
         print("="*80 + "\n")
 
     def close(self):
-        """Close database connection"""
+        
         self.cursor.close()
         self.conn.close()
         print("Database connection closed")
 
 
 def main():
-    # Initialize PhoneBook
+    
     phonebook = PhoneBook(
         dbname='phonebook_db',
         user='postgres',
@@ -239,7 +237,7 @@ def main():
         host='localhost'
     )
     
-    # Create tables
+    
     phonebook.create_tables()
     
     while True:

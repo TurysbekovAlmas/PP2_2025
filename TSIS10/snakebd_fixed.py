@@ -11,16 +11,13 @@ import psycopg2
 from datetime import datetime
 import json
 
-# Initialize Pygame
 pygame.init()
 
-# Constants
 WIDTH, HEIGHT = 600, 600
 GRID_SIZE = 20
 GRID_WIDTH = WIDTH // GRID_SIZE
 GRID_HEIGHT = HEIGHT // GRID_SIZE
 
-# Colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -30,7 +27,7 @@ GRAY = (128, 128, 128)
 
 class SnakeGameDB:
     def __init__(self, dbname, user, password, host='localhost', port='5432'):
-        """Initialize database connection"""
+        
         try:
             os.environ['PGHOST'] = host
             os.environ['PGPORT'] = str(port)
@@ -84,7 +81,7 @@ class SnakeGameDB:
             self.conn.rollback()
 
     def get_or_create_user(self, username):
-        """Get existing user or create new one"""
+        
         try:
             select_query = "SELECT user_id FROM users WHERE username = %s;"
             self.cursor.execute(select_query, (username,))
@@ -115,7 +112,7 @@ class SnakeGameDB:
             return None
 
     def get_user_stats(self, user_id):
-        """Get user's current level and high score"""
+        
         try:
             query = """
             SELECT level, high_score, game_state 
@@ -153,7 +150,7 @@ class SnakeGameDB:
             self.conn.rollback()
 
     def update_high_score(self, user_id, score):
-        """Update high score if current score is higher"""
+        
         try:
             query = """
             UPDATE user_scores 
@@ -167,7 +164,7 @@ class SnakeGameDB:
             self.conn.rollback()
 
     def close(self):
-        """Close database connection"""
+        
         self.cursor.close()
         self.conn.close()
 
@@ -179,7 +176,7 @@ class Level:
         self.walls = self.generate_walls()
     
     def generate_walls(self):
-        """Generate walls based on level"""
+        
         walls = []
         
         if self.level_num == 1:
@@ -239,7 +236,7 @@ class SnakeGame:
         self.paused = False
 
     def init_game(self):
-        """Initialize new game"""
+        
         self.level = Level(self.current_level)
         self.snake = [(GRID_WIDTH // 2, GRID_HEIGHT // 2)]
         self.direction = (1, 0)
@@ -249,7 +246,7 @@ class SnakeGame:
         self.game_over = False
 
     def generate_food(self):
-        """Generate food at random position"""
+        
         while True:
             food = (random.randint(0, GRID_WIDTH - 1),
                    random.randint(0, GRID_HEIGHT - 1))
@@ -257,7 +254,6 @@ class SnakeGame:
                 return food
 
     def move_snake(self):
-        """Move snake in current direction"""
         self.direction = self.next_direction
         head_x, head_y = self.snake[0]
         new_head = (head_x + self.direction[0], head_y + self.direction[1])
@@ -294,7 +290,6 @@ class SnakeGame:
             self.snake.pop()
 
     def draw(self):
-        """Draw game elements"""
         self.screen.fill(BLACK)
         
         for wall in self.level.walls:
@@ -339,7 +334,6 @@ class SnakeGame:
         pygame.display.flip()
 
     def get_game_state(self):
-        """Get current game state for saving"""
         return {
             'snake': self.snake,
             'direction': self.direction,
@@ -349,7 +343,6 @@ class SnakeGame:
         }
 
     def load_game_state(self, state):
-        """Load saved game state"""
         try:
             self.current_level = state.get('level', 1)
             self.level = Level(self.current_level)
@@ -363,7 +356,6 @@ class SnakeGame:
             self.init_game()
 
     def save_and_quit(self):
-        """Save game state and quit"""
         game_state = self.get_game_state()
         self.db.save_game_state(self.user_id, self.current_level, 
                                self.score, game_state)
@@ -371,7 +363,6 @@ class SnakeGame:
         return True
 
     def run(self):
-        """Main game loop"""
         running = True
         
         while running:
